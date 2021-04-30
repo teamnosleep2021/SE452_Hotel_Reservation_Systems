@@ -1,4 +1,4 @@
-package edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.Controllers;
+package edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
