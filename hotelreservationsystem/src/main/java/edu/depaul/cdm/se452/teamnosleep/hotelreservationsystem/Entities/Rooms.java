@@ -1,38 +1,45 @@
-package edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.Entities;
+package edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Column;
+import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+// import javax.persistence.JoinColumn;
+// import javax.persistence.ManyToOne;
+// import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
 @Data
 @Entity
+@Table(name= "ROOMS")
 public class Rooms {
     @Id
     @GeneratedValue
+    @Column(name = "ID")
     private long id;
 
-    @Column(name = "room_name")
-    private String roomName;
+    @Column(name = "ROOM_TYPE_ID")
+    private int roomTypeID;
 
     @NotNull
-    private Integer guests;
+    @Column(name = "GUESTS")
+    private int guests;
 
-    @Column(name = "hotel_id")
     @NotNull
-    private Integer hotelId;
+    @Column(name = "HOTEL_ID")
+    private int hotelId;
 
-    @ManyToOne
-    @JoinColumn(name = "room_type")
-    @NotNull
-    private RoomTypes roomTypes;
+    @Column(name = "COST_PER_NIGHT")
+    private int costPerNight;
 
-    @OneToOne(mappedBy = "roomId")
-    private Reservations reservations;
+    // @ManyToOne
+    // @JoinColumn(name = "room_type")
+    // @NotNull
+    // private RoomTypes roomTypes;
+
+    // @OneToOne(mappedBy = "roomId")
+    // private Reservations reservations;
 }
