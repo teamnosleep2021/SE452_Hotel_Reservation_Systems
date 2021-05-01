@@ -33,12 +33,4 @@ public class Reservations {
     @JoinColumn(name = "user_id")
     @NotNull
     private Users userId;
-
-    @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-    @JoinColumn(name = "room_id")
-    @NotNull
-    private Rooms roomId;
-
-    @OneToOne(mappedBy = "reservation")
-    private Payments payment;
 }

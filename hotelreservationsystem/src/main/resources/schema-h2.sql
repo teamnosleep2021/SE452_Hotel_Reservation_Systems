@@ -49,17 +49,4 @@ CREATE TABLE reservations (
     FOREIGN KEY(room_id) REFERENCES rooms(id)
 );
 
-CREATE TABLE payments (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    card_type varchar(255) not null,
-    card_holder_name varchar(255) not null,
-    card_number varchar(19) not null,
-    expiry_dt date not null,
-    cvv varchar(3) not null,
-    reservation_id INT not null,
-    payment_dt date not null default CURRENT_DATE,
-    FOREIGN KEY(reservation_id) REFERENCES reservations(id)
-);
-
-
 
