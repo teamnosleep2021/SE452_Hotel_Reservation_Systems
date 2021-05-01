@@ -23,6 +23,7 @@ CREATE TABLE locations (
 CREATE TABLE hotels (
     id INT AUTO_INCREMENT  PRIMARY KEY,
     hotel_name varchar(255),
+    POSTAL_CODE int not null,
     location_id INT not null,
     FOREIGN KEY(location_id) REFERENCES locations(id)
 );
@@ -47,6 +48,15 @@ CREATE TABLE reservations (
     room_id INT not null,
     FOREIGN KEY(user_id) REFERENCES users(id),
     FOREIGN KEY(room_id) REFERENCES rooms(id)
+);
+
+create table PAYMENT (
+  CARD_TYPE VARCHAR(50),
+  CARD_HOLDER_NAME VARCHAR(100),
+  CARD_NUMBER int not null,
+  CVV int not null,
+  EXPIRATION_YY_MM VARCHAR(100)
+  primary key(CARD_NUMBER)
 );
 
 
