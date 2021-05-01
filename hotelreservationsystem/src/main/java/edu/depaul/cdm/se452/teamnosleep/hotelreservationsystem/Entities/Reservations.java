@@ -38,4 +38,7 @@ public class Reservations {
     @JoinColumn(name = "room_id")
     @NotNull
     private Rooms roomId;
+
+    @OneToOne(mappedBy = "reservation")
+    private Payments payment;
 }
