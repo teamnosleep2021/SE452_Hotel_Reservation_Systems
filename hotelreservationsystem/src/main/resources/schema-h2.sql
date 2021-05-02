@@ -37,6 +37,7 @@ CREATE TABLE rooms (
     guests INT not null,
     room_type INT not null,
     hotel_id INT not null,
+    cost_per_night DECIMAL not null,
     FOREIGN KEY(hotel_id) REFERENCES hotels(id),
     FOREIGN KEY(room_type) REFERENCES room_types(id)
 );
@@ -51,12 +52,14 @@ CREATE TABLE reservations (
 );
 
 create table PAYMENT (
-  CARD_TYPE VARCHAR(50),
-  CARD_HOLDER_NAME VARCHAR(100),
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  USER_ID int not null,
+  CARD_TYPE VARCHAR(50) not null,
+  CARD_HOLDER_NAME VARCHAR(100) not null,
   CARD_NUMBER int not null,
   CVV int not null,
-  EXPIRATION_YY_MM VARCHAR(100)
-  primary key(CARD_NUMBER)
+  foreign key (USER_ID) REFERENCES USERS(ID)
 );
+
 
 

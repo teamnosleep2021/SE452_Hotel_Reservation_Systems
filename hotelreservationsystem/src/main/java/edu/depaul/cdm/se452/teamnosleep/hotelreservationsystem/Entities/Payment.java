@@ -2,6 +2,7 @@ package edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -12,7 +13,11 @@ import lombok.Data;
 @Entity
 @Table(name = "HOTELS")
 public class Payment {
-    
+    @Id
+    @GeneratedValue
+    @Column(name = "ID")
+    private long id;
+
     @NotNull
     @Column(name = "USER_ID")
     private int user_id;
@@ -26,7 +31,6 @@ public class Payment {
     private String card_holder_name;
 
     @NotNull
-    @Id
     @Column(name = "CARD_NUMBER")
     private int card_number;
 
