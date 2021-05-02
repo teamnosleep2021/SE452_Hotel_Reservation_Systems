@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 // import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 //import javax.persistence.JoinColumn;
 //import javax.persistence.ManyToOne;
@@ -21,7 +22,7 @@ import lombok.Data;
 @Table(name = "RESERVATIONS")
 public class Reservations {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private long id;
 
