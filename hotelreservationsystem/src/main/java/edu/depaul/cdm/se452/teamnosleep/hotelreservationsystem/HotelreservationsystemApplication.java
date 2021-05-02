@@ -6,11 +6,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Locations;
+import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Reservations;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Users;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.HotelsRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.LocationsRepository;
+import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.ReservationsRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.UsersRepository;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -66,7 +69,6 @@ public class HotelreservationsystemApplication {
   
         log.info(users.toString());
   
-        // Student student = new Student();
         repository.save(updateUser);
         log.info("After James: " + repository.count());
         };
@@ -87,4 +89,52 @@ public class HotelreservationsystemApplication {
         };
     }
 
+    //create reservation
+    @Bean
+    public CommandLineRunner createReservation(ReservationsRepository repository) {
+        return (args) -> {
+        log.info("Before: " + repository.count());
+        Reservations res = new Reservations();
+        LocalDate start = LocalDate.of(2021, 6, 11);
+        LocalDate end = LocalDate.of(2021, 6, 12);
+        res.setStartDate(start);
+        res.setEndDate(end);
+        res.setRoomId(1);
+        res.setUserId(1);
+        repository.save(res);
+        log.info("After: " + repository.count());
+        };
+    }
+
+    //update functionality
+    @Bean
+    public CommandLineRunner updateReservations(ReservationsRepository repository) {
+        return (args) -> {
+        // fetch all Course
+        Optional<Reservations> reservation = repository.findById((long) 4);
+        Reservations updatedReservation = reservation.orElse(new Reservations());
+        updatedReservation.setEndDate(updatedReservation.getEndDate().plusDays(1));
+  
+        log.info("Updated Res: " + updatedReservation.toString());
+
+        repository.save(updatedReservation);
+        log.info("After: " + repository.count());
+        };
+    }
+
+    //delete functionality
+    @Bean
+    public CommandLineRunner deleteReservations(ReservationsRepository repository) {
+        return (args) -> {
+        // fetch all Course
+        log.info("Before: " + repository.count());
+        Optional<Reservations> reservation = repository.findById((long) 3);
+        Reservations deletedReservation = reservation.orElse(new Reservations());
+  
+        log.info("Deleted Res: " + deletedReservation.toString());
+
+        repository.delete(deletedReservation);
+        log.info("After: " + repository.count());
+        };
+    }
 }

@@ -1,6 +1,7 @@
 package edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 // import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -28,17 +29,17 @@ public class Reservations {
 
     @Column(name = "START_DT")
     @NotNull
-    private Date startDate;
+    private LocalDate startDate;
 
     @Column(name = "END_DT")
     @NotNull
-    private Date endDate;
+    private LocalDate endDate;
 
     @Column(name = "USER_ID")
-    private int user_id;
+    private int userId;
 
     @Column(name = "ROOM_ID")
-    private int room_id;
+    private int roomId;
 
     // @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     // @JoinColumn(name = "user_id")
