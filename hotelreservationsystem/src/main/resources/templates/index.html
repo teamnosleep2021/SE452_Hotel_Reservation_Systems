@@ -1,15 +1,38 @@
-<!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="/fragments/header :: common-header"></head>
-    <body>
-        <div layout:fragment="content" th:remove="tag">
-            <h1>DePaul SE352/452 Project</h1>
-            <h1>Hotel Reservation System</h1>
-            <p>Only way to book a hotel!</p>
-            <ol>
-                <li><a href="/hotel" th:href="@{/hotel}">Demo</a></li>
-            </ol>       
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace = "fragments :: head">
+</head>
+<body>
+<nav th:replace = "fragments :: navigation"></nav>
+<br><hr><br>
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-four-fifths">
+     <!-- center column -->
+     <div class="field is-horizontal">
+        <div class="field-body">
+          <div class="field">
+            <label for="location">Location:</label>
+            <p class="control">
+              <input class="input" type="text" placeholder="Location" id="location">
+            </p>
+          </div>
+          <div class="field">
+            <label for="checkin">Checkin Date:</label>
+            <p class="control">
+              <input class="input is-success" id="checkin" type="date">
+            </p>
+          </div>
+          <div class="field">
+            <label for="checkout">Checkout Date:</label>
+            <p class="control">
+              <input class="input is-success" id="checkout" type="date">
+            </p>
+          </div>
         </div>
-        <div th:replace="/fragments/footer :: footer"></div>   
-    </body>
-</html>
+      </div>
+     <!-- end center column -->
+    </div>
+    <div class="column"></div>
+  </div>
+</body>

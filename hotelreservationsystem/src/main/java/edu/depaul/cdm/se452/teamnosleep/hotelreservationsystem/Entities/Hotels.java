@@ -7,6 +7,7 @@ package edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -18,7 +19,7 @@ import lombok.Data;
 @Table(name = "HOTELS")
 public class Hotels {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="ID")
     private long id;
 
@@ -27,7 +28,7 @@ public class Hotels {
     private String hotel_name;
 
     @Column(name = "LOCATION_ID")
-    private int location_id;
+    private int locationId;
 
     @Column(name = "POSTAL_CODE")
     private int postal_code;

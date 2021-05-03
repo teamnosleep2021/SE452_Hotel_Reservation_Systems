@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:fragment="head">
+   <meta charset="UTF-8"/>
+   <title>Hotel Reservation</title>
+   <link rel="stylesheet" href="bulma.min.css">
+</head>
+<body>
+    <!-- nav bar fragment -->
+    <nav th:fragment="navigation" class="navbar" role="navigation" aria-label="main navigation">   
+        <div class="navbar-brand"> 
+            <a class="navbar-item" href="/"> 
+                Hotel Reservation
+            </a> 
+         </div>
+        
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-light">
+                    Sign in
+                  </a>
+                <a class="button is-primary">
+                  <strong>Register</strong>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+</body>
