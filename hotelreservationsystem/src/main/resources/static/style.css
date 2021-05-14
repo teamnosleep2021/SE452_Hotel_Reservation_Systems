@@ -1,0 +1,17 @@
+.margin {
+    margin: 3%;
+}
+
+.navbarMarginTop {
+    margin-top: 1%;
+}
+
+.signInBoxSize {
+    margin-top: 100px;
+    height: 25rem;
+    width: 25rem;
+}
+
+.registerBoxSize {
+    margin-top: 100px;
+} 
