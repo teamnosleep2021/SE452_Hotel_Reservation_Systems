@@ -4,7 +4,7 @@
 </head>
 <body>
 <nav th:replace = "fragments :: navigation"></nav>
-<br><hr><br>
+<hr>
 <div class="columns">
     <div class="column"></div>
     <div class="column is-four-fifths">
@@ -14,25 +14,61 @@
           <div class="field">
             <label for="location">Location:</label>
             <p class="control">
-              <input class="input" type="text" placeholder="Location" id="location">
+              <input class="input is-info" type="text" placeholder="Location" id="location">
             </p>
           </div>
           <div class="field">
             <label for="checkin">Checkin Date:</label>
             <p class="control">
-              <input class="input is-success" id="checkin" type="date">
+              <input class="input is-info" id="checkin" type="date">
             </p>
           </div>
           <div class="field">
             <label for="checkout">Checkout Date:</label>
             <p class="control">
-              <input class="input is-success" id="checkout" type="date">
+              <input class="input is-info" id="checkout" type="date">
             </p>
+          </div>
+          <div class="field">
+            <label for="numOfGuest">Number Of Guests:</label>
+            <p class="control">
+              <input class="input is-info" id="checkout" type="number" min="1" max="10" value="1">
+            </p> 
           </div>
         </div>
       </div>
      <!-- end center column -->
-    </div>
-    <div class="column"></div>
+     <div class="field is-horizontal margin">
+      <div class="field-body">
+          <div class="field" align="center">
+              <p class="control">
+                  <input class="button is-info is-normal" type="submit" name="searchBtn" id="searchBtn" value="Search"/>
+              </p>
+          </div>
+      </div>
   </div>
+    </div>
+  <div class="column"></div>
+</div>
+<div align = "center"> 
+  <table class="table is-striped">
+    <thead>
+      <tr>
+        <th>Hotel Name</th>
+        <th>Location</th>
+        <th>Postal Code</th>
+        <th>View Room</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="hotels : ${listHotels}">
+        <td th:text="${hotels.hotel_name}"></td>
+        <td th:text="${hotels.locationId}"></td>
+        <td th:text="${hotels.postal_code}"></td>
+        <td><a href=""> Room </a></td>
+      </tr>
+    </tbody>
+  </table> 
+</div>
 </body>
+</html>

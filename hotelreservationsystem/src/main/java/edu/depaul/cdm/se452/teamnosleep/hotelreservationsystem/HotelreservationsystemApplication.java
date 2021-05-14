@@ -28,19 +28,19 @@ public class HotelreservationsystemApplication {
 
 	private static final Logger log = LoggerFactory.getLogger(HotelreservationsystemApplication.class);
 
-    //search functionality
-	  @Bean
-    public CommandLineRunner find(UsersRepository repository) {
-        return (args) -> {
-            // fetch all customers
-            log.info("Users found with findAll():");
-            log.info("-------------------------------");
-            repository.findAll().forEach((User) -> {
-                log.info(User.toString());
-            });
-            log.info("-------------------------------");
-        };
-    }
+    // //search functionality
+	//   @Bean
+    // public CommandLineRunner find(UsersRepository repository) {
+    //     return (args) -> {
+    //         // fetch all customers
+    //         log.info("Users found with findAll():");
+    //         log.info("-------------------------------");
+    //         repository.findAll().forEach((User) -> {
+    //             log.info(User.toString());
+    //         });
+    //         log.info("-------------------------------");
+    //     };
+    // }
     //create functionality
     @Bean
     public CommandLineRunner createUser(UsersRepository repository) {
@@ -58,36 +58,36 @@ public class HotelreservationsystemApplication {
         };
     }
 
-    //update functionality
-    @Bean
-    public CommandLineRunner updateUser(UsersRepository repository) {
-        return (args) -> {
-        // fetch all Course
-        Optional<Users> users = repository.findById((long) 6);
-        Users updateUser = users.orElse(new Users());
-        updateUser.setUsername("updated " + updateUser.getUsername());
+    // //update functionality
+    // @Bean
+    // public CommandLineRunner updateUser(UsersRepository repository) {
+    //     return (args) -> {
+    //     // fetch all Course
+    //     Optional<Users> users = repository.findById((long) 6);
+    //     Users updateUser = users.orElse(new Users());
+    //     updateUser.setUsername("updated " + updateUser.getUsername());
   
-        log.info(users.toString());
+    //     log.info(users.toString());
   
-        repository.save(updateUser);
-        log.info("After James: " + repository.count());
-        };
-    }
+    //     repository.save(updateUser);
+    //     log.info("After James: " + repository.count());
+    //     };
+    // }
 
     //find all hotels based on location
-    @Bean
-    public CommandLineRunner findHotels(HotelsRepository repository, LocationsRepository locs) {
-        return (args) -> {
-            // fetch all customers
-            log.info("Hotels found:");
-            log.info("-------------------------------");
-            Locations loc = locs.findByLocationName("Chicago");
-            repository.findByLocationId(loc.getId()).forEach((Hotels) -> {
-              log.info(Hotels.toString());
-          });
-            log.info("-------------------------------");
-        };
-    }
+    // @Bean
+    // public CommandLineRunner findHotels(HotelsRepository repository, LocationsRepository locs) {
+    //     return (args) -> {
+    //         // fetch all customers
+    //         log.info("Hotels found:");
+    //         log.info("-------------------------------");
+    //         Locations loc = locs.findByLocationName("Chicago");
+    //         repository.findByLocationId(loc.getId()).forEach((Hotels) -> {
+    //           log.info(Hotels.toString());
+    //       });
+    //         log.info("-------------------------------");
+    //     };
+    // }
 
     //create reservation
     @Bean

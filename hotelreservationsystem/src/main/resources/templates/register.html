@@ -4,5 +4,71 @@
 </head>
 <body>
 <nav th:replace = "fragments :: navigation"></nav>
-
+<hr>
+    <section class=" is-fullheight">
+        <div class=""> 
+            <div class="container has-text-centered">
+                <div class="columns">
+                <div class="column is-4"></div>
+                <div class="box registerBoxSize">
+                    <form action="" method="POST">
+                    <h1 class="title">Account Registration</h1>
+                    <div class="field is-horizontal margin">
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control">
+                                    <input class="input is-info is-medium" placeholder= "First Name" type="text" name="fname" id="fname" value=""/>
+                                </p>
+                            </div>
+                            <div class="field">
+                                <p class="control">
+                                    <input class="input is-info is-medium" placeholder= "Last Name" type="text" name="lname" id="lname" value=""/>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal margin">
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control">
+                                    <input class="input is-info is-medium" placeholder= "User Name" type="text" name="username" id="username" value=""/>
+                                </p>
+                            </div>
+                            <div class="field">
+                                <p class="control">
+                                    <input class="input is-info is-medium" placeholder= "Email" type="email" name="email" id="email" value=""/>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal margin">
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control">
+                                    <input class="input is-info is-medium" placeholder= "Password" type="password" name="password" id="password" value=""/>
+                                </p>
+                            </div>
+                            <div class="field">
+                                <p class="control">
+                                    <input class="input is-info is-medium" placeholder= "Confirm Password" type="password" name="cpassword" id="cpassword" value=""/>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal margin">
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control">
+                                    <input class="button is-info is-medium" type="submit" name="submitBtn" id="submitBtn" value="Create Account"/>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                  </form>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
+</html>

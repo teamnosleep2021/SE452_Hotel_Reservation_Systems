@@ -1,6 +1,6 @@
 package edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities;
 
-import java.sql.Date;
+//import java.sql.Date;
 import java.time.LocalDate;
 
 // import javax.persistence.CascadeType;

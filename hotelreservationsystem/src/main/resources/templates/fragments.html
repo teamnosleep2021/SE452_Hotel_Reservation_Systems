@@ -3,29 +3,30 @@
 <head th:fragment="head">
    <meta charset="UTF-8"/>
    <title>Hotel Reservation</title>
-   <link rel="stylesheet" href="bulma.min.css">
+   <!-- <link rel="stylesheet" href="bulma.min.css"> -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- nav bar fragment -->
-    <nav th:fragment="navigation" class="navbar" role="navigation" aria-label="main navigation">   
-        <div class="navbar-brand"> 
-            <a class="navbar-item" href="/"> 
-                Hotel Reservation
-            </a> 
-         </div>
-        
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <div class="buttons">
-                <a class="button is-light">
-                    Sign in
-                  </a>
-                <a class="button is-primary">
-                  <strong>Register</strong>
-                </a>
-              </div>
-            </div>
-          </div>
+  <nav th:fragment="navigation" class="navbar" role="navigation" aria-label="main navigation"> 
+    <div class="navbar-start">
+      <div class="navbar-item">
+        <div class="buttons">
+         <a class="button is-light"> Manage Bookings </a>
         </div>
-      </nav>
+      </div>
+    </div>
+    <div class="navbar-brand has-text-centered"> 
+        <a class="navbar-item content is-large" href="/"><strong> Hotel Reservation System </strong></a> 
+    </div>
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-light" href="/sign-in.html"> Sign in </a>
+          <a class="button is-info" href="/register.html"> Register </a>
+        </div>
+      </div>
+    </div>
+  </nav>
 </body>
+</html>

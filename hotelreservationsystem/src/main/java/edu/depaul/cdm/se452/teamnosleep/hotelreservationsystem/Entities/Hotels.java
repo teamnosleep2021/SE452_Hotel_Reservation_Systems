@@ -1,14 +1,18 @@
 package edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities;
 
+import javax.persistence.CascadeType;
 // import javax.persistence.CascadeType;
 // import javax.persistence.JoinColumn;
 // import javax.persistence.OneToOne;
 // import javax.persistence.FetchType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -21,7 +25,7 @@ public class Hotels {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="ID")
-    private long id;
+    private Integer id;
 
     @NotBlank(message = "hotel name may not be empty")
     @Column(name = "HOTEL_NAME")
@@ -33,7 +37,7 @@ public class Hotels {
     @Column(name = "POSTAL_CODE")
     private int postal_code;
 
-    // @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-    // @JoinColumn(name = "location_id")
-    // private Locations locations;
+    @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private Locations locations;
 }
