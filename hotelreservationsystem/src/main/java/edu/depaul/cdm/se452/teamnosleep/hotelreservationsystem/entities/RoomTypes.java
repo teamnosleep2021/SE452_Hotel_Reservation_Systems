@@ -19,7 +19,7 @@ public class RoomTypes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long id;
+    private Integer id;
 
     @Column(name = "ROOM_TYPE_STR")
     @NotBlank(message = "room type desc cannot be blank")
