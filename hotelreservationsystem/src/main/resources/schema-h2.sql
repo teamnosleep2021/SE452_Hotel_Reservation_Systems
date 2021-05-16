@@ -29,17 +29,17 @@ CREATE TABLE hotels (
 );
 CREATE TABLE room_types ( 
     id INT AUTO_INCREMENT PRIMARY KEY,
-    type_str varchar(255) not null
+    room_type_str varchar(255) not null
 );
 CREATE TABLE rooms ( 
     id INT AUTO_INCREMENT PRIMARY KEY,
     room_name varchar(255),
     guests INT not null,
-    room_type INT not null,
+    room_type_id INT not null,
     hotel_id INT not null,
     cost_per_night DECIMAL not null,
     FOREIGN KEY(hotel_id) REFERENCES hotels(id),
-    FOREIGN KEY(room_type) REFERENCES room_types(id)
+    FOREIGN KEY(room_type_id) REFERENCES room_types(id)
 );
 CREATE TABLE reservations ( 
     id INT AUTO_INCREMENT PRIMARY KEY,

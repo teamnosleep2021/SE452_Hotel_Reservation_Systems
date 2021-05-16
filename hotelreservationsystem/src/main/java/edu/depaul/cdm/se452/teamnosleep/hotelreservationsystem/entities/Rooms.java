@@ -20,7 +20,7 @@ public class Rooms {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private long id;
+    private Integer id;
 
     @Column(name = "ROOM_TYPE_ID")
     private int roomTypeID;
@@ -29,12 +29,15 @@ public class Rooms {
     @Column(name = "GUESTS")
     private int guests;
 
+    @Column(name = "room_name")
+    private String roomName;
+
     @NotNull
     @Column(name = "HOTEL_ID")
     private int hotelId;
 
     @Column(name = "COST_PER_NIGHT")
-    private int costPerNight;
+    private double costPerNight;
 
     // @ManyToOne
     // @JoinColumn(name = "room_type")
