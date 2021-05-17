@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace = "fragments :: head">
+</head>
+<body>
+<nav th:replace = "fragments :: navigation"></nav>
+<hr>
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-four-fifths">
+     <!-- center column -->
+     <form  action="/confirmation.html" method="get">
+     <article class="message is-dark">
+        <div class="message-header">
+          <h1>Payment Details</h1>
+        </div>
+        <div class="message-body">
+            <!-- message body -->
+              
+            <div class="field">
+                <label class="label">Card Type</label>
+                <div class="control">
+                  <div class="select">
+                    <select name="cardtype" required>
+                      <option>Mastercard</option>
+                      <option>Visa</option>
+                      <option>American Express</option>
+                      <option>Discover</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+            <div class="field">
+                <label class="label">Card Holder Name</label>
+                <div class="control">
+                  <input class="input" name="cardholdername" type="text" placeholder="Name on the Card" required />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Card Number</label>
+                <div class="control">
+                  <input class="input" name="cardnumber" type="text" placeholder="Card Number" pattern="^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$" required />
+                </div>
+              </div>
+
+              <div class="field is-grouped">
+                <label class="label">CVV&nbsp;&nbsp;&nbsp;</label>
+                <div class="control">
+                  <input class="input" name="cardcvv" type="text" pattern="[0-9]{3}" required />
+                </div>
+                <label class="label">Expiry Date&nbsp;&nbsp;&nbsp;</label>
+                <div class="control">
+                  <input class="input" name="cardexpdt" type="date" required />
+                </div>
+              </div>
+              
+            <!-- /message body-->
+        </div>
+      </article>
+      <div class="field is-horizontal is-grouped is-grouped-centered">
+        <p class="control">
+            <a class="button is-info is-normal" href="/">Cancel</a>
+        </p>
+        <p class="control">
+            <input class="button is-info is-normal" type="submit" value="Pay"/>
+        </p>
+      </div>
+    </form>
+     <!-- end center column -->
+    </div>
+    <div class="column"></div>
+</div>
+
+</body>
+</html>
