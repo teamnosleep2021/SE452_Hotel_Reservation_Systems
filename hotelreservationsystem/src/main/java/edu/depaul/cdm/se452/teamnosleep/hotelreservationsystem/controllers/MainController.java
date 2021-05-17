@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Hotels;
-import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Locations;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Rooms;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.HotelsRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.LocationsRepository;
-import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.ReservationsRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.RoomTypesRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.RoomsRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.service.HotelService;
+import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.service.LocationServiceImpl;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.service.RoomsService;
 
 @Controller
@@ -35,6 +34,9 @@ public class MainController {
 	@Autowired
 	private LocationsRepository locationsRepository;
 
+	@Autowired
+    private LocationServiceImpl locationService;
+
 	//@Autowired
 	//private ReservationsRepository reservationsRepository;
 
@@ -47,6 +49,7 @@ public class MainController {
 	@RequestMapping("/")
 	public String index(Model model) {
 		model.addAttribute("listHotels", hotelService.getAllHotels());
+		model.addAttribute("listLocations", locationService.getAllLocations());
 		return "index";
 	}
 

@@ -4,16 +4,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Locations;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Reservations;
-import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Users;
-import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.HotelsRepository;
-import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.LocationsRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.ReservationsRepository;
-import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.UsersRepository;
-
-import java.time.LocalDate;
 import java.util.Optional;
 
 import org.slf4j.Logger;
