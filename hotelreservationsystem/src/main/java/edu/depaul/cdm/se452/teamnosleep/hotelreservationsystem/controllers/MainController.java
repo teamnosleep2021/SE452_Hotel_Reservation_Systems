@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Hotels;
+import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Locations;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Rooms;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.HotelsRepository;
+import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.LocationsRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.ReservationsRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.RoomTypesRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.RoomsRepository;
@@ -29,6 +31,9 @@ public class MainController {
 
 	@Autowired
 	private HotelsRepository hotelsRepository;
+
+	@Autowired
+	private LocationsRepository locationsRepository;
 
 	//@Autowired
 	//private ReservationsRepository reservationsRepository;
@@ -60,8 +65,9 @@ public class MainController {
 							  ,@RequestParam(name = "hotelid") Integer hotelId){
 		//start
 		var hotel = hotelsRepository.findById(hotelId).get();
+		var loc = locationsRepository.findById(hotel.getLocationId()).get();
+
 		model.addAttribute("hotelname", hotel.getHotel_name());
-		var loc = hotel.getLocations();
 		model.addAttribute("address", loc.getLocationName());
 		model.addAttribute("zip", hotel.getPostal_code());
 		model.addAttribute("listRooms", roomsService.getAllRooms(hotel.getId()));
@@ -117,5 +123,10 @@ public class MainController {
 	@RequestMapping("/updated.html")
 	public String update(){
 		return "updated";
+	}
+
+	@RequestMapping("/payment.html")
+	public String payment(){
+		return "payment";
 	}
 }
