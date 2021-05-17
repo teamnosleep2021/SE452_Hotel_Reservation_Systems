@@ -63,7 +63,7 @@
     <tbody>
       <tr th:each="hotels : ${listHotels}">
         <td th:text="${hotels.hotel_name}"></td>
-        <td th:text="${hotels.locationId}"></td>
+        <td th:each="location : ${listLocations}" th:if="(${location.id} == ${hotels.locationId})" th:text="${location.locationName}"></td>
         <td th:text="${hotels.postal_code}"></td>
         <td><a th:href="@{/hotel-details.html(hotelid=${hotels.id})}"> Room </a></td>
       </tr>
