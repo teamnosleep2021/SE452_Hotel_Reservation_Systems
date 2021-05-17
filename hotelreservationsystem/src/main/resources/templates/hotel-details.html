@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace = "fragments :: head">
+</head>
+<body>
+<nav th:replace = "fragments :: navigation"></nav>
+<hr>
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-four-fifths">
+     <!-- center column -->
+     <article class="message is-dark">
+        <div class="message-header">
+          <h1>Hotel Details</h1>
+        </div>
+        <div class="message-body">
+            <strong>Hotel Name: </strong><span th:text="${hotelname}"></span>
+            <br>
+            <strong>Hotel Address: </strong><span th:text="${address}"></span>
+            <br>
+            <strong>State: </strong><span th:text="${state}"></span>
+            <br>
+            <strong>Postal Code: </strong><span th:text="${zip}"></span>
+            <br>
+            <strong>Rating: </strong><span th:text="${rating}"></span>
+        </div>
+      </article>
+      <!-- list all rooms in a hotel -->
+      <table class="table is-striped">
+        <thead>
+          <tr>
+            <th>Room Number</th>
+            <th>Room Type</th>
+            <th>Cost Per Night</th>
+            <th>Book Room</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="rooms : ${listRooms}">
+            <td th:text="${rooms.roomName}"></td>
+            <td th:text="${rooms.roomTypeID}"></td>
+            <td th:text="${rooms.costPerNight}"></td>
+            <td><a th:href="@{/book-room.html(roomid=${rooms.id})}"> Room </a></td>
+          </tr>
+        </tbody>
+      </table> 
+      <!-- /list all rooms in a hotel -->
+     <!-- end center column -->
+    </div>
+    <div class="column"></div>
+</div>
+
+</body>
+</html>
