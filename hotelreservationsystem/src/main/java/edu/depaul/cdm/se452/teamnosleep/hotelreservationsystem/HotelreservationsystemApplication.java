@@ -1,15 +1,8 @@
 package edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem;
 
-import org.springframework.boot.CommandLineRunner;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Reservations;
-import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.ReservationsRepository;
-import java.util.Optional;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @SpringBootApplication
 public class HotelreservationsystemApplication {
@@ -18,7 +11,7 @@ public class HotelreservationsystemApplication {
 		SpringApplication.run(HotelreservationsystemApplication.class, args);
 	}
 
-	private static final Logger log = LoggerFactory.getLogger(HotelreservationsystemApplication.class);
+	// private static final Logger log = LoggerFactory.getLogger(HotelreservationsystemApplication.class);
 
     // //search functionality
 	//   @Bean
@@ -115,18 +108,18 @@ public class HotelreservationsystemApplication {
     // }
 
     //delete functionality
-    @Bean
-    public CommandLineRunner deleteReservations(ReservationsRepository repository) {
-        return (args) -> {
-        // fetch all Course
-        log.info("Before: " + repository.count());
-        Optional<Reservations> reservation = repository.findById((long) 3);
-        Reservations deletedReservation = reservation.orElse(new Reservations());
+    // @Bean
+    // public CommandLineRunner deleteReservations(ReservationsRepository repository) {
+    //     return (args) -> {
+    //     // fetch all Course
+    //     log.info("Before: " + repository.count());
+    //     Optional<Reservations> reservation = repository.findById((long) 3);
+    //     Reservations deletedReservation = reservation.orElse(new Reservations());
   
-        log.info("Deleted Res: " + deletedReservation.toString());
+    //     log.info("Deleted Res: " + deletedReservation.toString());
 
-        repository.delete(deletedReservation);
-        log.info("After: " + repository.count());
-        };
-    }
+    //     repository.delete(deletedReservation);
+    //     log.info("After: " + repository.count());
+    //     };
+    // }
 }
