@@ -16,12 +16,16 @@ import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.Rese
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.RoomTypesRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.RoomsRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.service.HotelService;
+import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.service.RoomsService;
 
 @Controller
 public class MainController {
 
 	@Autowired
     private HotelService hotelService;
+
+	@Autowired
+    private RoomsService roomsService;
 
 	@Autowired
 	private HotelsRepository hotelsRepository;
@@ -51,12 +55,26 @@ public class MainController {
 		return "sign-in";
 	}
 
+	@RequestMapping("/hotel-details.html")
+	public String hotelDetails(Model model
+							  ,@RequestParam(name = "hotelid") Integer hotelId){
+		//start
+		var hotel = hotelsRepository.findById(hotelId).get();
+		model.addAttribute("hotelname", hotel.getHotel_name());
+		var loc = hotel.getLocations();
+		model.addAttribute("address", loc.getLocationName());
+		model.addAttribute("zip", hotel.getPostal_code());
+
+		model.addAttribute("listRooms", roomsService.getAllRooms(hotel.getId()));
+		return "hotel-details";
+	}
+
 	@RequestMapping("/book-room.html")
 	public String bookRoom(Model model
-						  ,@RequestParam(name = "userid") Integer userId
 						  ,@RequestParam(name = "hotelid") Integer hotelId
 						  ,@RequestParam(name = "roomid") Integer roomId
 						  ){
+		int userId = 1;
 		try {
 			Hotels hotelDetails = hotelsRepository.findById(hotelId).get();
 			Rooms roomDetails = roomsRepository.findById(roomId).get();
