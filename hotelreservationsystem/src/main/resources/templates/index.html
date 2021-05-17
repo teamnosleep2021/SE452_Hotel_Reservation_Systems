@@ -65,7 +65,7 @@
         <td th:text="${hotels.hotel_name}"></td>
         <td th:text="${hotels.locationId}"></td>
         <td th:text="${hotels.postal_code}"></td>
-        <td><a href=""> Room </a></td>
+        <td><a th:href="@{/hotel-details.html(hotelid=${hotels.id})}"> Room </a></td>
       </tr>
     </tbody>
   </table> 
