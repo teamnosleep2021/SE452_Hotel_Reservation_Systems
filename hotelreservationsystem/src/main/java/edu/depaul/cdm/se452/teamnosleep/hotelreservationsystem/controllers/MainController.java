@@ -51,34 +51,55 @@ public class MainController {
 		return "sign-in";
 	}
 
-	@RequestMapping("/book-room.html")
-	public String bookRoom(Model model
-						  ,@RequestParam(name = "userid") Integer userId
-						  ,@RequestParam(name = "hotelid") Integer hotelId
-						  ,@RequestParam(name = "roomid") Integer roomId
-						  ){
-		try {
-			Hotels hotelDetails = hotelsRepository.findById(hotelId).get();
-			Rooms roomDetails = roomsRepository.findById(roomId).get();
-			//add info to model
-			model.addAttribute("userid",userId);
-			model.addAttribute("hotelname",hotelDetails.getHotel_name());
-			model.addAttribute("roomtype",roomTypesRepository.findById(roomDetails.getRoomTypeID()).get().getType());
-			model.addAttribute("roomnumber",roomDetails.getRoomName());
-			model.addAttribute("numberofguests",roomDetails.getGuests());
-			Double costPerNight = roomDetails.getCostPerNight();
-			Double taxRate = 0.045;
-			Double tax = (costPerNight*taxRate);
-			Double total = costPerNight + tax;
-			model.addAttribute("costpernight","$" + costPerNight);
-			model.addAttribute("tax","$" + tax);
-			model.addAttribute("total","$" + total);
-			var currentDate = LocalDate.now();
-			model.addAttribute("checkindate",currentDate);
-			model.addAttribute("checkoutdate",currentDate.plusDays(2));
-		} catch (NoSuchElementException ex){
-			ex.printStackTrace();
-		}
-		return "book-room";	
+	@RequestMapping("/confirmation.html")
+	public String confirmation(){
+		return "confirmation";
 	}
+
+	@RequestMapping("/cancellation.html")
+	public String cancellation(){
+		return "cancellation";
+	}
+
+	@RequestMapping("/manage.html")
+	public String manage(){
+		return "manage";
+	}
+
+	@RequestMapping("/updated.html")
+	public String update(){
+		return "updated";
+	}
+
+
+	// @RequestMapping("/book-room.html")
+	// public String bookRoom(Model model
+	// 					  ,@RequestParam(name = "userid") Integer userId
+	// 					  ,@RequestParam(name = "hotelid") Integer hotelId
+	// 					  ,@RequestParam(name = "roomid") Integer roomId
+	// 					  ){
+	// 	try {
+	// 		Hotels hotelDetails = hotelsRepository.findById(hotelId).get();
+	// 		Rooms roomDetails = roomsRepository.findById(roomId).get();
+	// 		//add info to model
+	// 		model.addAttribute("userid",userId);
+	// 		model.addAttribute("hotelname",hotelDetails.getHotel_name());
+	// 		model.addAttribute("roomtype",roomTypesRepository.findById(roomDetails.getRoomTypeID()).get().getType());
+	// 		model.addAttribute("roomnumber",roomDetails.getRoomName());
+	// 		model.addAttribute("numberofguests",roomDetails.getGuests());
+	// 		Double costPerNight = roomDetails.getCostPerNight();
+	// 		Double taxRate = 0.045;
+	// 		Double tax = (costPerNight*taxRate);
+	// 		Double total = costPerNight + tax;
+	// 		model.addAttribute("costpernight","$" + costPerNight);
+	// 		model.addAttribute("tax","$" + tax);
+	// 		model.addAttribute("total","$" + total);
+	// 		var currentDate = LocalDate.now();
+	// 		model.addAttribute("checkindate",currentDate);
+	// 		model.addAttribute("checkoutdate",currentDate.plusDays(2));
+	// 	} catch (NoSuchElementException ex){
+	// 		ex.printStackTrace();
+	// 	}
+	// 	return "book-room";	
+	// }
 }

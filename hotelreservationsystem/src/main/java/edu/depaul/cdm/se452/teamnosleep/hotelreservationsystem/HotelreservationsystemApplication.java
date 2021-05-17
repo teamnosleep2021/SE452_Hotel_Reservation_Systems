@@ -42,21 +42,21 @@ public class HotelreservationsystemApplication {
     //     };
     // }
     //create functionality
-    @Bean
-    public CommandLineRunner createUser(UsersRepository repository) {
-        return (args) -> {
-        // fetch all Course
-        log.info("Before James: " + repository.count());
-        Users customer = new Users();
-        customer.setUsername("jamesbond");
-        customer.setEmail("james@bond.uk");
-        customer.setFirst_name("James");
-        customer.setLast_name("Bond");
-        customer.setPassword_hash("password1");
-        repository.save(customer);
-        log.info("After James: " + repository.count());
-        };
-    }
+    // @Bean
+    // public CommandLineRunner createUser(UsersRepository repository) {
+    //     return (args) -> {
+    //     // fetch all Course
+    //     log.info("Before James: " + repository.count());
+    //     Users customer = new Users();
+    //     customer.setUsername("jamesbond");
+    //     customer.setEmail("james@bond.uk");
+    //     customer.setFirst_name("James");
+    //     customer.setLast_name("Bond");
+    //     customer.setPassword_hash("password1");
+    //     repository.save(customer);
+    //     log.info("After James: " + repository.count());
+    //     };
+    // }
 
     // //update functionality
     // @Bean
@@ -90,37 +90,37 @@ public class HotelreservationsystemApplication {
     // }
 
     //create reservation
-    @Bean
-    public CommandLineRunner createReservation(ReservationsRepository repository) {
-        return (args) -> {
-        log.info("Before: " + repository.count());
-        Reservations res = new Reservations();
-        LocalDate start = LocalDate.of(2021, 6, 11);
-        LocalDate end = LocalDate.of(2021, 6, 12);
-        res.setStartDate(start);
-        res.setEndDate(end);
-        res.setRoomId(1);
-        res.setUserId(1);
-        repository.save(res);
-        log.info("After: " + repository.count());
-        };
-    }
+    // @Bean
+    // public CommandLineRunner createReservation(ReservationsRepository repository) {
+    //     return (args) -> {
+    //     log.info("Before: " + repository.count());
+    //     Reservations res = new Reservations();
+    //     LocalDate start = LocalDate.of(2021, 6, 11);
+    //     LocalDate end = LocalDate.of(2021, 6, 12);
+    //     res.setStartDate(start);
+    //     res.setEndDate(end);
+    //     res.setRoomId(1);
+    //     res.setUserId(1);
+    //     repository.save(res);
+    //     log.info("After: " + repository.count());
+    //     };
+    // }
 
     //update functionality
-    @Bean
-    public CommandLineRunner updateReservations(ReservationsRepository repository) {
-        return (args) -> {
-        // fetch all Course
-        Optional<Reservations> reservation = repository.findById((long) 4);
-        Reservations updatedReservation = reservation.orElse(new Reservations());
-        updatedReservation.setEndDate(updatedReservation.getEndDate().plusDays(1));
+    // @Bean
+    // public CommandLineRunner updateReservations(ReservationsRepository repository) {
+    //     return (args) -> {
+    //     // fetch all Course
+    //     Optional<Reservations> reservation = repository.findById((long) 4);
+    //     Reservations updatedReservation = reservation.orElse(new Reservations());
+    //     updatedReservation.setEndDate(updatedReservation.getEndDate().plusDays(1));
   
-        log.info("Updated Res: " + updatedReservation.toString());
+    //     log.info("Updated Res: " + updatedReservation.toString());
 
-        repository.save(updatedReservation);
-        log.info("After: " + repository.count());
-        };
-    }
+    //     repository.save(updatedReservation);
+    //     log.info("After: " + repository.count());
+    //     };
+    // }
 
     //delete functionality
     @Bean
