@@ -2,10 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:fragment="head">
    <meta charset="UTF-8"/>
+   <meta http-equiv="x-ua-compatible" content="ie=edge">
    <title>Hotel Reservation</title>
-   <!-- <link rel="stylesheet" href="bulma.min.css"> -->
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
-   <link rel="stylesheet" href="style.css">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"/>
+   <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
   <nav th:fragment="navigation" class="navbar" role="navigation" aria-label="main navigation"> 
@@ -23,7 +24,7 @@
       <div class="navbar-item">
         <div class="buttons">
           <a class="button is-light" href="/sign-in.html"> Sign in </a>
-          <a class="button is-info" href="/register.html"> Register </a>
+          <a class="button is-info" href="/register"> Register </a>
         </div>
       </div>
     </div>
