@@ -8,27 +8,30 @@
 <div class="columns">
     <div class="column"></div>
     <div class="column is-5">
-     <!-- center column -->
-     <div class="field is-horizontal">
-        <div class="field-body">
-          <div class="field">
-            <label for="location"><strong>Location:</strong></label>
-            <p class="control">
-              <input class="input is-info" type="text" placeholder="Please enter hotel name, city, state, or postal code" id="location">
-            </p>
+      <form th:action="@{/}">
+        <!-- center column -->
+        <div class="field is-horizontal">
+           <div class="field-body">
+              <div class="field">
+                <label for="location"><strong>Location:</strong></label>
+                <p class="control">
+                  <input class="input is-info" type="text" placeholder="Please enter hotel name, city, state, or postal code" required/>
+                </p>
+              </div>
+           </div>
+        </div>
+        <!-- end center column -->
+        <div class="field is-horizontal margin">
+          <div class="field-body">
+            <div class="field" align="center">
+              <p class="control">
+              <input class="button is-info is-normal" type="submit" value="Search" />
+              <input class="button is-info is-normal" type="button" value="Clear" />
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-     <!-- end center column -->
-     <div class="field is-horizontal margin">
-      <div class="field-body">
-          <div class="field" align="center">
-              <p class="control">
-                  <input class="button is-info is-normal" type="submit" name="searchBtn" id="searchBtn" value="Search"/>
-              </p>
-          </div>
-      </div>
-  </div>
+      </form>
     </div>
   <div class="column"></div>
 </div>
