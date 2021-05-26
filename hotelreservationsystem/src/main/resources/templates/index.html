@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head th:replace = "fragments :: head">
 </head>
 <body>
@@ -8,7 +8,7 @@
 <div class="columns">
     <div class="column"></div>
     <div class="column is-5">
-      <form th:action="@{/}">
+      <form th:action="@{/}" method="post">
         <!-- center column -->
         <div class="field is-horizontal">
            <div class="field-body">

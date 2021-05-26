@@ -1,80 +1,193 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace = "fragments :: head">
-</head>
-<body>
-<nav th:replace = "fragments :: navigation"></nav>
-<hr>
-    <section class=" is-fullheight">
-        <div class=""> 
-            <div class="container has-text-centered">
-                <div class="columns">
-                <div class="column is-3"></div>
-                <div class="box registerBoxSize">
-                    <form action="#" modelAttribute="user" th:object="${user}" method="post">
-                    <h1 class="title">Account Registration</h1>                    
-                    <div class="field is-horizontal margin">
-                        <div class="field-body">
-                            <div class="field">
-                                <p class="control">
-                                    <input class="input is-info is-medium" placeholder= "First Name" type="text" th:field="*{fname}" id="fname" minlength="2" maxlength="20" required/>
-                                    <span th:if="${#fields.hasErrors('fname')}" th:errors="*{fname}"></span>
-                                </p>
-                            </div>
-                            <div class="field">
-                                <p class="control">
-                                    <input class="input is-info is-medium" placeholder= "Middle Name" type="text" th:field="*{mname}" id="mname" minlength="2" maxlength="20" />
-                                    <span th:if="${#fields.hasErrors('mname')}" th:errors="*{mname}"></span>
-                                </p>
-                            </div>
-                            <div class="field">
-                                <p class="control">
-                                    <input class="input is-info is-medium" placeholder= "Last Name" type="text" th:field="*{lname}" id="lname" minlength="2" maxlength="20" required/>
-                                    <span th:if="${#fields.hasErrors('lname')}" th:errors="*{lname}"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="field is-horizontal margin">
-                        <div class="field-body">
-                            <div class="field">
-                                <p class="control">
-                                    <input class="input is-info is-medium" placeholder= "User Name" type="text" th:field="*{username}" id="username" minlength="3" maxlength="10" required/>
-                                    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
-                                </p>
-                            </div>
-                            <div class="field">
-                                <p class="control">
-                                    <input class="input is-info is-medium" placeholder= "Password" type="password" th:field="*{passwordHash}" id="passwordHash" minlength="6" maxlength="10" required/>
-                                    <span th:if="${#fields.hasErrors('passwordHash')}" th:errors="*{passwordHash}"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="field is-horizontal margin">
-                        <div class="field-body">
-                            <div class="field">
-                                <p class="control">
-                                    <input class="input is-info is-medium" placeholder= "Email" type="email" th:field="*{email}" id="email" required/>
-                                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="field is-horizontal margin">
-                        <div class="field-body">
-                            <div class="field">
-                                <p class="control">
-                                    <input class="button is-info is-medium" type="submit" id="submitBtn" value="Create Account"/>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                  </form>
-                </div>
-                </div>
-            </div>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org/"
+  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+  <head th:replace="fragments :: head"> </head>
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="">
+          <h1><strong>Hotel Reservation System</strong></h1>
+        </a>
+      </div>
+    </nav>
+    <hr />
+    <section class="is-fullheight">
+      <div class="columns">
+        <div class="column is-4"></div>
+        <div th:if="${param.success}">
+          <div class="notification is-success is-light">
+            <button class="delete"></button>
+            <strong
+              >Your account has been created successfully. Please Log
+              In!</strong
+            >
+          </div>
         </div>
+      </div>
+      <div class="container has-text-centered">
+        <div class="columns">
+          <div class="column is-3"></div>
+          <div class="box registerBoxSize">
+            <form
+              th:action="@{/process-register}"
+              modelAttribute="user"
+              th:object="${user}"
+              method="post"
+            >
+              <h1 class="title">Account Registration</h1>
+              <div class="field is-horizontal margin">
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input
+                        class="input is-info is-medium"
+                        placeholder="First Name"
+                        type="text"
+                        th:field="*{fname}"
+                        id="fname"
+                        minlength="2"
+                        maxlength="20"
+                        required
+                        autofocus
+                      />
+                      <span
+                        th:if="${#fields.hasErrors('fname')}"
+                        th:errors="*{fname}"
+                      ></span>
+                    </p>
+                  </div>
+                  <div class="field">
+                    <p class="control">
+                      <input
+                        class="input is-info is-medium"
+                        placeholder="Middle Name"
+                        type="text"
+                        th:field="*{mname}"
+                        id="mname"
+                        minlength="2"
+                        maxlength="20"
+                        autofocus
+                      />
+                      <span
+                        th:if="${#fields.hasErrors('mname')}"
+                        th:errors="*{mname}"
+                      ></span>
+                    </p>
+                  </div>
+                  <div class="field">
+                    <p class="control">
+                      <input
+                        class="input is-info is-medium"
+                        placeholder="Last Name"
+                        type="text"
+                        th:field="*{lname}"
+                        id="lname"
+                        minlength="2"
+                        maxlength="20"
+                        required
+                        autofocus
+                      />
+                      <span
+                        th:if="${#fields.hasErrors('lname')}"
+                        th:errors="*{lname}"
+                      ></span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="field is-horizontal margin">
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input
+                        class="input is-info is-medium"
+                        placeholder="User Name"
+                        type="text"
+                        th:field="*{username}"
+                        id="username"
+                        minlength="3"
+                        maxlength="10"
+                        required
+                        autofocus
+                      />
+                      <span
+                        th:if="${#fields.hasErrors('username')}"
+                        th:errors="*{username}"
+                      ></span>
+                    </p>
+                  </div>
+                  <div class="field">
+                    <p class="control">
+                      <input
+                        class="input is-info is-medium"
+                        placeholder="Password"
+                        type="password"
+                        th:field="*{passwordHash}"
+                        id="passwordHash"
+                        minlength="6"
+                        maxlength="10"
+                        required
+                        autofocus
+                      />
+                      <span
+                        th:if="${#fields.hasErrors('passwordHash')}"
+                        th:errors="*{passwordHash}"
+                      ></span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="field is-horizontal margin">
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input
+                        class="input is-info is-medium"
+                        placeholder="Email"
+                        type="email"
+                        th:field="*{email}"
+                        id="email"
+                        required
+                        autofocus
+                      />
+                      <span
+                        th:if="${#fields.hasErrors('email')}"
+                        th:errors="*{email}"
+                      ></span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="field is-horizontal margin">
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control">
+                      <input
+                        class="button is-info is-medium"
+                        type="submit"
+                        id="submitBtn"
+                        value="Create Account"
+                      />
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="field is-vertical margin">
+                <div class="field-body">
+                  <div class="field">
+                    <p>
+                      Already have an account? <a th:href="@{/login}">Log In</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </section>
-</body>
+  </body>
 </html>

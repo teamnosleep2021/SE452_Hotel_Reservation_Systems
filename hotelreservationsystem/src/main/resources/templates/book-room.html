@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head th:replace = "fragments :: head">
 </head>
 <body>
@@ -44,7 +44,7 @@
             <a class="button is-info is-normal" href="/">Cancel</a>
         </p>
         <p class="control">
-            <input class="button is-info is-normal" type="submit" value="Confirm Booking"/>
+            <input class="button is-info is-normal" type="submit" value="Confirm Booking" sec:authorize="hasAnyAuthority('USER','ADMIN')"/>
         </p>
       </div>
     </form>
