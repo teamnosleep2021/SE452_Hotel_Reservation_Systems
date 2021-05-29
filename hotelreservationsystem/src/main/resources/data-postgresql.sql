@@ -29,9 +29,9 @@ insert into hotels (hotel_name, location_id, postal_code) values ('Embassy Suite
 insert into hotels (hotel_name, location_id, postal_code) values ('Magnolia Hotel Denver', '5', 80202);
 
 -- populate room_types
-insert into room_types(TYPE_STR) values('Single Room');
-insert into room_types(TYPE_STR) values('Double Room');
-insert into room_types(TYPE_STR) values('Queen Room');
+insert into room_types(ROOM_TYPE_STR) values('Single Room');
+insert into room_types(ROOM_TYPE_STR) values('Double Room');
+insert into room_types(ROOM_TYPE_STR) values('Queen Room');
 
 -- populate rooms
 insert into rooms(ROOM_TYPE_ID, hotel_id, guests, COST_PER_NIGHT,room_name) values (1, 1 , 2, 250,'R1');
