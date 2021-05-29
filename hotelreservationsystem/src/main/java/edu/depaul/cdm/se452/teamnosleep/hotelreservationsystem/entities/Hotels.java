@@ -34,9 +34,6 @@ public class Hotels {
     @Column(name = "LOCATION_ID")
     private int locationId;
 
-    @Column(name = "POSTAL_CODE")
-    private int postal_code;
-
     @OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name = "id", referencedColumnName = "id")
     private Locations locations;
