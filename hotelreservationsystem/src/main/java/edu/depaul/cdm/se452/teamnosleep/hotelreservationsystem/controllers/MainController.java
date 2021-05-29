@@ -48,8 +48,9 @@ public class MainController {
 		var loc = locationsRepository.findById(hotel.getLocationId()).get();
 
 		model.addAttribute("hotelname", hotel.getHotel_name());
-		model.addAttribute("address", loc.getLocationName());
-		model.addAttribute("zip", hotel.getPostal_code());
+		model.addAttribute("address", loc.getAddress());
+		model.addAttribute("state", loc.getState());
+		model.addAttribute("zip", loc.getPostal_code());
 		model.addAttribute("listRooms", roomsService.getAllRooms(hotel.getId()));
 		return "hotel-details";
 	}

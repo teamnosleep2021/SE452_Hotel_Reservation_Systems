@@ -20,24 +20,29 @@ INSERT INTO users_roles (user_id, role_id) VALUES(2, 2);
 
 
 -- populate locations
-INSERT INTO LOCATIONS (LOCATION_NAME) VALUES
-    ('Chicago'),
-    ('California'),
-    ('Texas'),
-    ('Florida'),
-    ('Colorado');
+INSERT INTO LOCATIONS (address_str,city,state_cd,POSTAL_CODE) VALUES
+    ('198 E Delaware Pl','Chicago','Illinois',60611),
+    ('401 N Wabash Ave','Chicago','Illinois',60601),
+    ('243 E Ontario St','Chicago','Illinois',60611),
+    ('301 S Market St','San Jose','California',95113),
+    ('1717 N Akard St','Dallas','Texas', 75201),
+    ('400 N Olive St','Dallas','Texas', 75201),
+    ('635 Bay St NE','St. Petersburg','Florida', 33701),
+    ('1200 Epcot Resorts Blvd','Lake Buena Vista','Florida', 32830),
+    ('7290 Commerce Center Dr','Colorado Springs','Colorado', 80919),
+    ('818 17th St','Denver','Colorado', 80202);
 
 -- populate hotels
-insert into hotels (hotel_name, location_id, postal_code) values ('Hilton Chicago', '1', 60611);
-insert into hotels (hotel_name, location_id, postal_code) values ('Trump International Hotel', '1', 60601);
-insert into hotels (hotel_name, location_id, postal_code) values ('The Aloft', '1', 60611);
-insert into hotels (hotel_name, location_id, postal_code) values ('San Jose Marriott', '2', 95113);
-insert into hotels (hotel_name, location_id, postal_code) values ('Fairmont Dallas', '3', 75201);
-insert into hotels (hotel_name, location_id, postal_code) values ('Sheraton Dallas Hotel', '3', 75201);
-insert into hotels (hotel_name, location_id, postal_code) values ('Bay Street Inn', '4', 33701);
-insert into hotels (hotel_name, location_id, postal_code) values ('Walt Disney World Swan', '4', 32830);
-insert into hotels (hotel_name, location_id, postal_code) values ('Embassy Suites Colorado', '5', 80919);
-insert into hotels (hotel_name, location_id, postal_code) values ('Magnolia Hotel Denver', '5', 80202);
+insert into hotels (hotel_name, location_id) values ('Hilton Chicago', 1);
+insert into hotels (hotel_name, location_id) values ('Trump International Hotel', 2);
+insert into hotels (hotel_name, location_id) values ('The Aloft', 3);
+insert into hotels (hotel_name, location_id) values ('San Jose Marriott', 4);
+insert into hotels (hotel_name, location_id) values ('Fairmont Dallas', 5);
+insert into hotels (hotel_name, location_id) values ('Sheraton Dallas Hotel', 6);
+insert into hotels (hotel_name, location_id) values ('Bay Street Inn', 7);
+insert into hotels (hotel_name, location_id) values ('Walt Disney World Swan', 8);
+insert into hotels (hotel_name, location_id) values ('Embassy Suites Colorado', 9);
+insert into hotels (hotel_name, location_id) values ('Magnolia Hotel Denver', 10);
 
 -- populate room_types
 insert into room_types(ROOM_TYPE_STR) values('Single Room');

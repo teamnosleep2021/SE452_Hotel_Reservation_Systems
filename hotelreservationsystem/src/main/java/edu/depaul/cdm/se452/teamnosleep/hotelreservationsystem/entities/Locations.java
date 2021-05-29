@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
 
@@ -21,10 +20,18 @@ public class Locations {
     @Column(name = "ID")
     private Integer id;
 
-    @NotBlank(message = "location name may not be empty")
-    @Column(name = "LOCATION_NAME")
-    private String locationName;
+    @Column(name = "address_str")
+    private String address;
 
-    @OneToOne(cascade = CascadeType.ALL ,mappedBy = "locations")
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "state_cd")
+    private String state;
+
+    @Column(name = "POSTAL_CODE")
+    private int postal_code;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "locations")
     private Hotels hotels;
 }

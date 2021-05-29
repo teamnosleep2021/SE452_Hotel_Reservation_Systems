@@ -35,12 +35,14 @@ create table users_roles (
 
 CREATE TABLE locations ( 
     id INT AUTO_INCREMENT PRIMARY KEY,
-    location_name varchar(255) not null
+    address_str varchar(255), 
+    city varchar(255), 
+    state_cd varchar(25), 
+    POSTAL_CODE int not null
 );
 CREATE TABLE hotels (
     id INT AUTO_INCREMENT  PRIMARY KEY,
     hotel_name varchar(255),
-    POSTAL_CODE int not null,
     location_id INT not null,
     FOREIGN KEY(location_id) REFERENCES locations(id)
 );
