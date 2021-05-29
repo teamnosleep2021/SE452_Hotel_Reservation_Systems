@@ -21,10 +21,10 @@ INSERT INTO users_roles (user_id, role_id) VALUES(2, 2);
 
 -- populate locations
 INSERT INTO LOCATIONS (address_str,city,state_cd,POSTAL_CODE) VALUES
-    ('198 E Delaware Pl','Chicago','IL',60611),
-    ('401 N Wabash Ave','Chicago','IL',60601),
-    ('243 E Ontario St','Chicago','IL',60611),
-    ('301 S Market St','San Jose','CA',95113),
+    ('198 E Delaware Pl','Chicago','Illinois',60611),
+    ('401 N Wabash Ave','Chicago','Illinois',60601),
+    ('243 E Ontario St','Chicago','Illinois',60611),
+    ('301 S Market St','San Jose','California',95113),
     ('1717 N Akard St','Dallas','Texas', 75201),
     ('400 N Olive St','Dallas','Texas', 75201),
     ('635 Bay St NE','St. Petersburg','Florida', 33701),

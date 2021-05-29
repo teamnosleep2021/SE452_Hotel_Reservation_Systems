@@ -23,6 +23,12 @@ public class Locations {
     @Column(name = "address_str")
     private String address;
 
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "state_cd")
+    private String state;
+
     @Column(name = "POSTAL_CODE")
     private int postal_code;
 

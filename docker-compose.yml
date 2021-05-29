@@ -4,9 +4,10 @@ services:
     build: .
     depends_on:
       - "database"
-    command: --SPRING_PROFILES_ACTIVE=prod
+    command: --SPRING_PROFILES_ACTIVE=dev
     ports:
       - "8080:8080"
+      - "8443:8443"
   database:
     image: "postgres" # use latest official postgres version
     container_name: "postgres"
@@ -14,7 +15,5 @@ services:
         POSTGRES_USER: "postgres"
         POSTGRES_PASSWORD: "Radhe20$$()" #POSTGRES_DB: db
     restart: unless-stopped
-    volumes:
-      - ./postgres-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"

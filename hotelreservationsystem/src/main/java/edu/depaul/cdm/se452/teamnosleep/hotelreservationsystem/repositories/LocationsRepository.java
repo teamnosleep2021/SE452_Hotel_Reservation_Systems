@@ -6,5 +6,4 @@ import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Location
 
 
 public interface LocationsRepository extends JpaRepository<Locations, Integer>  {
-    Locations findByLocationName(String location);
 }
