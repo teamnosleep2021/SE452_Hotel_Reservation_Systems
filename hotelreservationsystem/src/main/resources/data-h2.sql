@@ -1,11 +1,22 @@
 -- populate users table
 -- Initial table population
-INSERT INTO USERS(USERNAME, PASSWORD_HASH, FIRST_NAME, MIDDLE_NAME, LAST_NAME, EMAIL) VALUES
-    ('LeoD', 'leo123', 'Leonardo', 'J.','DiCaprio', 'leoD@gmail.com'),
-    ('JackieC', 'jack123', 'Jackie', 'A.','Chan', 'jackiechan@gmail.com'),
-    ('BruceL', 'bruce123', 'Bruce', 'S.','Lee', 'brucelee@ymail.com'),
-    ('ChristK', 'Christ123', 'Christopher', 'R.','Nolan', 'ChristNolan@gmail.com'),
-    ('TomC', 'Tom123', 'Tom', 'K.','Cruise', 'tomcruise@gmail.com');
+INSERT INTO users(username, password_hash, first_name, middle_name, last_name, email, enabled) VALUES
+    ('LeoD', '$2a$10$ocecgV0tbvt9ARWMryvHmeKPiMAL.LnK5u3f1SQEgtsgFXcS1X1dW', 'Leonardo', 'J.','DiCaprio', 'leoD@gmail.com', TRUE),
+    ('JackieC', '$2a$10$ocecgV0tbvt9ARWMryvHmeKPiMAL.LnK5u3f1SQEgtsgFXcS1X1dW', 'Jackie', 'A.','Chan', 'jackiechan@gmail.com', TRUE),
+    ('BruceL', '$2a$10$ocecgV0tbvt9ARWMryvHmeKPiMAL.LnK5u3f1SQEgtsgFXcS1X1dW', 'Bruce', 'S.','Lee', 'brucelee@ymail.com', TRUE),
+    ('ChristK', '$2a$10$ocecgV0tbvt9ARWMryvHmeKPiMAL.LnK5u3f1SQEgtsgFXcS1X1dW', 'Christopher', 'R.','Nolan', 'ChristNolan@gmail.com', TRUE),
+    ('TomC', '$2a$10$ocecgV0tbvt9ARWMryvHmeKPiMAL.LnK5u3f1SQEgtsgFXcS1X1dW', 'Tom', 'K.','Cruise', 'tomcruise@gmail.com', TRUE);
+
+-- populate ROLES table
+-- Initial table population
+INSERT INTO roles(role_name) VALUES('USER');
+INSERT INTO roles(role_name) VALUES('ADMIN');
+
+-- populate USERS_ROLES table
+-- Initial table population
+INSERT INTO users_roles (user_id, role_id) VALUES(1, 1);
+INSERT INTO users_roles (user_id, role_id) VALUES(2, 1);
+INSERT INTO users_roles (user_id, role_id) VALUES(2, 2);
 
 
 -- populate locations
