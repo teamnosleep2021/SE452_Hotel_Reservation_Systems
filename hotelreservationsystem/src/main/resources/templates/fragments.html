@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head th:fragment="head">
    <meta charset="UTF-8"/>
    <meta http-equiv="x-ua-compatible" content="ie=edge">
    <title>Hotel Reservation</title>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"/>
-   <link rel="stylesheet" href="styles.css"/>
+   <!-- <link rel="stylesheet" href="../static/css/custom.css" th:href="@{/static/css/custom.css}" /> -->
 </head>
 <body>
   <nav th:fragment="navigation" class="navbar" role="navigation" aria-label="main navigation"> 
     <div class="navbar-start">
       <div class="navbar-item">
-        <div class="buttons">
-         <a class="button is-light" href="/manage.html"> Manage Bookings </a>
+        <div class="buttons" sec:authorize="hasAnyAuthority('USER','ADMIN')">
+         <a class="button is-light" href="/manage.html" > Manage Bookings </a>
         </div>
       </div>
     </div>
@@ -23,8 +23,19 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-light" href="/sign-in.html"> Sign in </a>
-          <a class="button is-info" href="/register"> Register </a>
+          <div sec:authorize="!isAuthenticated()">
+            <a th:href="@{/login}"><input type="submit" class="button is-light" value="Log In"/></a>
+            <a th:href="@{/register}"><input type="submit" class="button is-light" value="Register"/></a>
+          </div>
+          <form th:action="@{/logout}" method="post" sec:authorize="hasAnyAuthority('USER','ADMIN')">
+            <input type="submit" class="button is-light" value="Log Out"/>
+            <div sec:authorize="isAuthenticated()">
+              Welcome <strong><span sec:authentication="name">Username</span></strong>
+              <!-- &nbsp; -->
+              <span sec:authentication="principal.authorities">Roles</span>
+            </div>
+          </form>
+          <!-- <a class="button is-info" href="/register"> Register </a> -->
         </div>
       </div>
     </div>

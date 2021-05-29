@@ -6,36 +6,29 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Hotels;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Rooms;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.HotelsRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.LocationsRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.RoomTypesRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.RoomsRepository;
-import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.service.HotelService;
-import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.service.LocationServiceImpl;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.service.RoomsService;
 
 @Controller
 public class MainController {
 
 	@Autowired
-    private HotelService hotelService;
-
-	@Autowired
     private RoomsService roomsService;
+
 
 	@Autowired
 	private HotelsRepository hotelsRepository;
 
 	@Autowired
 	private LocationsRepository locationsRepository;
-
-	@Autowired
-    private LocationServiceImpl locationService;
 
 	//@Autowired
 	//private ReservationsRepository reservationsRepository;
@@ -45,23 +38,7 @@ public class MainController {
 
 	@Autowired
 	private RoomTypesRepository roomTypesRepository;
-
-	@RequestMapping("/")
-	public String index(Model model) {
-		model.addAttribute("listHotels", hotelService.getAllHotels());
-		model.addAttribute("listLocations", locationService.getAllLocations());
-		return "index";
-	}
-
-	@RequestMapping("/register.html")
-	public String register() {
-		return "register";
-	}
-
-	@RequestMapping("/sign-in.html")
-	public String signIn() {
-		return "sign-in";
-	}
+	
 
 	@RequestMapping("/hotel-details.html")
 	public String hotelDetails(Model model
@@ -113,7 +90,7 @@ public class MainController {
 		return "confirmation";
 	}
 
-	@RequestMapping("/cancellation.html")
+	@GetMapping("/cancellation.html")
 	public String cancellation(){
 		return "cancellation";
 	}
@@ -123,7 +100,7 @@ public class MainController {
 		return "manage";
 	}
 
-	@RequestMapping("/updated.html")
+	@GetMapping("/updated.html")
 	public String update(){
 		return "updated";
 	}

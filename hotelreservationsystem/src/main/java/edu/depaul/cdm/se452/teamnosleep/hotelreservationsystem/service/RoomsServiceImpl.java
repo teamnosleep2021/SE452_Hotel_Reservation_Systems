@@ -3,7 +3,6 @@ package edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Rooms;

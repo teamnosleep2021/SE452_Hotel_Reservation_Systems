@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head th:replace = "fragments :: head">
 </head>
 <body>
@@ -18,8 +18,8 @@
             <div class="field-body">
                 <div class="field">
                     <p class="control">
-                        <a class="button is-info is-medium" style = "float:right; margin:5px" href = "/updated.html">Update Booking</a>
-                        <a class="button is-info is-medium" style = "float:right; margin:5px" href = "/cancellation.html">Cancel Booking</a>
+                        <a class="button is-info is-medium" style = "float:right; margin:5px" href = "/updated.html" sec:authorize="hasAnyAuthority('USER','ADMIN')">Update Booking</a>
+                        <a class="button is-info is-medium" style = "float:right; margin:5px" href = "/cancellation.html" sec:authorize="hasAuthority('ADMIN')">Cancel Booking</a>
                     </p>
                 </div>
             </div>
