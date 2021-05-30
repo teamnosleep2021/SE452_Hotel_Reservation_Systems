@@ -94,6 +94,7 @@ create table PAYMENT (
   CARD_HOLDER_NAME varchar(100) not null,
   CARD_NUMBER varchar(20) not null,
   CVV int not null,
+  exp_dt date not null,
   primary key (ID),
   foreign key (USER_ID)
   references USERS (USER_ID)
