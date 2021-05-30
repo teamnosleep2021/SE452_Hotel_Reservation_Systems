@@ -1,5 +1,8 @@
 package edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.security;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -10,12 +13,17 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private DataSource dataSource;
     
     @Bean
     public UserDetailsService userDetailsService() {
@@ -67,10 +75,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .logoutSuccessUrl("/login?logout")
             .permitAll()
             .and()
+            .rememberMe().tokenRepository(persistentTokenRepository())
+            .and()
             .exceptionHandling().accessDeniedPage("/access-denied");
         
         // disabling csrf attack 
         http.csrf().disable(); 
+    }
+
+    // Storing Persistent Cookie 
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
+        tokenRepository.setDataSource(dataSource);
+        return tokenRepository;
     }
 
     @Override
