@@ -39,8 +39,8 @@
         <tbody>
           <tr th:each="rooms : ${listRooms}">
             <td th:text="${rooms.roomName}"></td>
-            <td th:text="${rooms.roomTypeID}"></td>
-            <td th:text="${rooms.costPerNight}"></td>
+            <td th:each="roomtypes : ${listRoomTypes}" th:if="(${roomtypes.id} == ${rooms.roomTypeID})" th:text="${roomtypes.type}"></td>
+            <td th:text="'&#36;'+${rooms.costPerNight}"></td>
             <td><a th:href="@{/book-room.html(roomid=${rooms.id})}"> Room </a></td>
           </tr>
         </tbody>

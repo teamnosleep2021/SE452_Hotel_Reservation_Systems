@@ -12,7 +12,7 @@
      <form  action="/confirmation.html" method="get">
      <article class="message is-dark">
         <div class="message-header">
-          <h1>Payment Details</h1>
+          <h1>Payment Details (reservation ID: <span th:text="${resid}"></span>)</h1>
         </div>
         <div class="message-body">
             <!-- message body -->
@@ -54,6 +54,7 @@
                 <label class="label">Expiry Date&nbsp;&nbsp;&nbsp;</label>
                 <div class="control">
                   <input class="input" name="cardexpdt" type="date" required />
+                  <input name="resid" type="hidden" th:value="${resid}">
                 </div>
               </div>
               
