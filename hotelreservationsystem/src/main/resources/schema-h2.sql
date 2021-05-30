@@ -75,7 +75,7 @@ create table PAYMENT (
   USER_ID int not null,
   CARD_TYPE VARCHAR(50) not null,
   CARD_HOLDER_NAME VARCHAR(100) not null,
-  CARD_NUMBER int not null,
+  CARD_NUMBER varchar(20) not null,
   CVV int not null,
   foreign key (USER_ID) REFERENCES users(user_id)
 );

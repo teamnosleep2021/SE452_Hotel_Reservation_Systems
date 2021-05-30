@@ -47,6 +47,8 @@
             <input class="button is-info is-normal" type="submit" value="Confirm Booking" sec:authorize="hasAnyAuthority('USER','ADMIN')"/>
         </p>
       </div>
+      <input name="roomid" type="hidden" th:value="${roomid}">
+      <input name="resid" type="hidden" th:value="${resid}">
     </form>
      <!-- end center column -->
     </div>
