@@ -123,8 +123,10 @@ public class MainController {
 	int userId = usersRepository.getUserByUsername(userName).getId();
 	p.setUser_id(userId);
 	p.setExpDt(cardExpDate);
+	paymentRepository.save(p);
 	//add attributes
 	model.addAttribute("resid", reservationId);
+	model.addAttribute("payid", p.getId());
 		return "confirmation";
 	}
 
