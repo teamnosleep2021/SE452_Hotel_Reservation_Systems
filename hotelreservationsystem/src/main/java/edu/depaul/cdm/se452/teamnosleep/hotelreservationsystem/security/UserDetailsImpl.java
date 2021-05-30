@@ -10,11 +10,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Role;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Users;
 
-public class CustomUserDetails implements UserDetails{
+public class UserDetailsImpl implements UserDetails{
 
     private Users user;
 
-    public CustomUserDetails(Users user) {
+    public UserDetailsImpl(Users user) {
         this.user = user;
     }
     
