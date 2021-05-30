@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS reservations CASCADE;
 DROP TABLE IF EXISTS payment CASCADE;
 DROP TABLE IF EXISTS roles CASCADE;
 DROP TABLE IF EXISTS users_roles CASCADE;
+DROP TABLE IF EXISTS persistent_logins CASCADE;
 
 CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -31,6 +32,13 @@ create table users_roles (
     role_id int, 
     foreign key (user_id) references users (user_id),
     foreign key (role_id) references roles (role_id)
+);
+
+create table persistent_logins (
+    username varchar(255) not null,
+    series varchar(64) primary key, 
+    token varchar(64) not null,
+    last_used timestamp not null
 );
 
 CREATE TABLE locations ( 
