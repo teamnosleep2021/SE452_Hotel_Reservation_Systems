@@ -13,10 +13,22 @@
 }
 
 .registerBoxSize {
-    margin-top: 100px;
+    margin-top: 1%;
 } 
 
 .topMargin {
     margin-top: 20%;
     margin-right: 20%;
+}
+
+.container {
+    margin-top: 30px;
+  }
+  
+.notification > button.delete {
+    border: none;
+}
+  
+.is-hidden {
+    display: none;
 }
