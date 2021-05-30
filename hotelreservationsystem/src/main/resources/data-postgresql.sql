@@ -81,5 +81,5 @@ insert into RESERVATIONS(START_DT, END_DT, USER_ID, ROOM_ID) values('2021-11-20'
 insert into RESERVATIONS(START_DT, END_DT, USER_ID, ROOM_ID) values('2021-04-15','2021-04-25',3,23);
 
 -- populate payment table
-insert into payment(user_id, card_type, card_holder_name, card_number, cvv) values(2, 'Master Card','Jackie Chan',125175212, 456);
+insert into payment(user_id, card_type, card_holder_name, card_number, cvv,exp_dt) values(2, 'Master Card','Jackie Chan',125175212, 456,'2021-04-15');
 

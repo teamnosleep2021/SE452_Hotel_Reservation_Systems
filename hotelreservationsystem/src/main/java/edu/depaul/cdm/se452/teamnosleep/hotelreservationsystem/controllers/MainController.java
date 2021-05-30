@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Hotels;
+import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Payment;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Reservations;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Rooms;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.HotelsRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.LocationsRepository;
+import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.PaymentRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.ReservationsRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.RoomTypesRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.RoomsRepository;
@@ -50,6 +52,9 @@ public class MainController {
 
 	@Autowired
 	private RoomTypesRepository roomTypesRepository;
+
+	@Autowired
+	private PaymentRepository paymentRepository;
 	
 
 	@RequestMapping("/hotel-details.html")
@@ -106,9 +111,22 @@ public class MainController {
 	,@RequestParam(name = "cardnumber") String cardNumber
 	,@RequestParam(name = "cardcvv") String cardCVV
 	,@RequestParam(name = "cardexpdt") @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate cardExpDate){
-
+	//persist payment
+	Payment p = new Payment();
+	p.setCard_holder_name(cardHolderName);
+	p.setCard_number(cardNumber);
+	p.setCvv(cardCVV);
+	p.setCard_type(cardType);
+	//get user details
+	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	String userName = userDetails.getUsername();
+	int userId = usersRepository.getUserByUsername(userName).getId();
+	p.setUser_id(userId);
+	p.setExpDt(cardExpDate);
+	paymentRepository.save(p);
 	//add attributes
 	model.addAttribute("resid", reservationId);
+	model.addAttribute("payid", p.getId());
 		return "confirmation";
 	}
 

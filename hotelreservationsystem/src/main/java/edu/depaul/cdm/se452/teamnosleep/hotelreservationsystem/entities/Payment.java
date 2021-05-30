@@ -1,5 +1,7 @@
 package edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,10 +35,13 @@ public class Payment {
 
     @NotNull
     @Column(name = "CARD_NUMBER")
-    private int card_number;
+    private String card_number;
 
     @NotNull
     @Column(name = "CVV")
-    private int cvv;
+    private String cvv;
     
+    @NotNull
+    @Column(name = "exp_dt")
+    private LocalDate expDt;
 }
