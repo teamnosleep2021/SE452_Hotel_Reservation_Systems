@@ -78,9 +78,11 @@ insert into rooms(ROOM_TYPE_ID, hotel_id, guests, COST_PER_NIGHT,room_name) valu
 -- populate reservations
 insert into RESERVATIONS(START_DT, END_DT, USER_ID, ROOM_ID) values('2021-04-15','2021-04-20',2,4);
 insert into RESERVATIONS(START_DT, END_DT, USER_ID, ROOM_ID) values('2021-05-20','2021-05-25',1,9);
-insert into RESERVATIONS(START_DT, END_DT, USER_ID, ROOM_ID) values('2021-11-20','2021-11-25',1,9);
-insert into RESERVATIONS(START_DT, END_DT, USER_ID, ROOM_ID) values('2021-04-15','2021-04-25',3,23);
+
 
 -- populate payment table
-insert into payment(user_id, card_type, card_holder_name, card_number, cvv, exp_dt) values(2, 'Master Card','Jackie Chan',125175212, 456,'2021-04-15');
+insert into payment(user_id, card_type, card_holder_name, card_number, cvv,exp_dt) values(2, 'Master Card','Jackie Chan',2483003122003098, 456,'2027-04-15');
+insert into payment(user_id, card_type, card_holder_name, card_number, cvv,exp_dt) values(1, 'Visa','Leonardo DiCaprio',2223003122003222, 254,'2031-04-15');
+
+
 
