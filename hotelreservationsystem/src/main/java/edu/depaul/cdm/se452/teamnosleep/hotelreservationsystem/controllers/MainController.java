@@ -2,7 +2,8 @@ package edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.controllers;
 
 import java.time.LocalDate;
 import java.util.NoSuchElementException;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,6 +24,7 @@ import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.Rese
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.RoomTypesRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.RoomsRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.UsersRepository;
+import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.service.RatingService;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.service.RoomTypesService;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.service.RoomsService;
 
@@ -56,6 +58,10 @@ public class MainController {
 	@Autowired
 	private PaymentRepository paymentRepository;
 	
+	@Autowired
+	private RatingService ratingService;
+
+	private static final Logger log = LoggerFactory.getLogger(MainController.class);
 
 	@RequestMapping("/hotel-details.html")
 	public String hotelDetails(Model model
@@ -63,11 +69,15 @@ public class MainController {
 		//start
 		var hotel = hotelsRepository.findById(hotelId).get();
 		var loc = locationsRepository.findById(hotel.getLocationId()).get();
+		var hotelRating = ratingService.findRatingByIT(hotelId);
+
+		log.info("Hotel ID " +  hotelId + " has a rating of " + hotelRating);
 
 		model.addAttribute("hotelname", hotel.getHotel_name());
 		model.addAttribute("address", loc.getAddress());
 		model.addAttribute("state", loc.getState());
 		model.addAttribute("zip", loc.getPostal_code());
+		model.addAttribute("rating", hotelRating);
 		model.addAttribute("listRooms", roomsService.getAllRooms(hotel.getId()));
 		model.addAttribute("listRoomTypes", roomTypesService.getAllRoomTypes());
 		return "hotel-details";
