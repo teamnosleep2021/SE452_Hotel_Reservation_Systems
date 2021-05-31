@@ -213,8 +213,23 @@ public class MainController {
 	}
 
 	@GetMapping("/updated.html")
-	public String update(){
+	public String update(Model model
+	,@RequestParam(name = "resid") Long bookingId
+	,@RequestParam(name = "checkindate") @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate checkInDate
+	,@RequestParam(name = "checkoutdate") @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate checkOutDate){
+	var res = reservationsRepository.findById(bookingId);
+	if (res.isPresent()){
+		var r = res.get();
+		model.addAttribute("resid", bookingId);
+		r.setStartDate(checkInDate);
+		r.setEndDate(checkOutDate);
+		reservationsRepository.save(r);
 		return "updated";
+	} else {
+		model.addAttribute("errormsg","Reservation ID not found");
+		return "error";
+	}
+	
 	}
 
 	@RequestMapping("/payment.html")
