@@ -143,8 +143,18 @@ public class MainController {
 	}
 
 	@GetMapping("/cancellation.html")
-	public String cancellation(){
-		return "cancellation";
+	public String cancellation(Model model
+	,@RequestParam(name = "resid") Long reservationId){
+		var res = reservationsRepository.findById(reservationId);
+		if (res.isPresent()){
+			var r = res.get();
+			reservationsRepository.delete(r);
+			model.addAttribute("resid", reservationId);
+			return "cancellation";
+		} else {
+			model.addAttribute("errormsg", "Cannot Delete Reservation: Reservation ID not found");
+			return "error";
+		}
 	}
 
 	@RequestMapping("/manage.html")
