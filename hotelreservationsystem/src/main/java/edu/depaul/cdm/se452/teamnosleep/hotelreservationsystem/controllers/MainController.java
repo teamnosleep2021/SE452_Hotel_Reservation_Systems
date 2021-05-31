@@ -2,6 +2,7 @@ package edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.controllers;
 
 import java.time.LocalDate;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -136,8 +137,52 @@ public class MainController {
 	}
 
 	@RequestMapping("/manage.html")
-	public String manage(){
+	public String manage(Model model
+	,@RequestParam(name = "bookingID", required = false) Optional<Long> bookingId){
+
+	//return parameterless page (no booking id)
+	if (!bookingId.isPresent()){
 		return "manage";
+	} {
+		//add attributes
+		model.addAttribute("resid", bookingId.get());
+
+		//get user details
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String userName = userDetails.getUsername();
+		int userId = usersRepository.getUserByUsername(userName).getId();
+
+		//logic
+		var res = reservationsRepository.findById(bookingId.get());
+
+			if(!res.isPresent()){
+				//error out (no reservation found)
+				model.addAttribute("errormsg", "No reservation found with ID: " + bookingId.get());
+				return "error";
+			} else {
+				//reservation found
+				var r = res.get();
+				//check for userid matches res
+				if (!(userId == r.getUserId())){
+					//unauthorized
+					model.addAttribute("errormsg", "User ID does not match for reservation: " + bookingId.get());
+					return "error";
+				} else {
+					//authorized
+					model.addAttribute("checkindate", r.getStartDate());
+					model.addAttribute("checkoutdate", r.getEndDate());
+					Rooms room = roomsRepository.findById(r.getRoomId()).get();
+					var hotelId = room.getHotelId();
+					var hotel = hotelsRepository.findById(hotelId).get();
+					model.addAttribute("hotelname", hotel.getHotel_name());
+					var roomType = roomTypesRepository.findById(room.getRoomTypeID()).get();
+					model.addAttribute("roomtype", roomType.getType());
+					model.addAttribute("numberofguests", room.getGuests());
+					//return page
+					return "manage";
+				}
+			}
+		}
 	}
 
 	@GetMapping("/updated.html")
