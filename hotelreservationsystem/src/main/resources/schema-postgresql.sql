@@ -101,7 +101,7 @@ create table PAYMENT (
   CARD_TYPE varchar(50) not null,
   CARD_HOLDER_NAME varchar(100) not null,
   CARD_NUMBER varchar(20) not null,
-  CVV int not null,
+  CVV varchar(4) not null,
   exp_dt date not null,
   primary key (ID),
   foreign key (USER_ID)
