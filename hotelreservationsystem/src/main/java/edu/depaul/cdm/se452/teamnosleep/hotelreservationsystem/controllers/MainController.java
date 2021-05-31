@@ -183,12 +183,14 @@ public class MainController {
 			} else {
 				//reservation found
 				var r = res.get();
-				//check for userid matches res
-				if (!(userId == r.getUserId())){
-					//unauthorized
-					model.addAttribute("errormsg", "User ID does not match for reservation: " + bookingId.get());
-					return "error";
-				} else {
+				//check user auth
+				boolean userIsAdmin = false;
+				if (userDetails != null && userDetails.getAuthorities().stream()
+				.anyMatch(a -> a.getAuthority().equals("ADMIN"))){
+					userIsAdmin = true;
+				}
+				//check for userid matches res or is admin
+				if ((userId == r.getUserId()) || userIsAdmin){
 					//authorized
 					model.addAttribute("checkindate", r.getStartDate());
 					model.addAttribute("checkoutdate", r.getEndDate());
@@ -201,6 +203,10 @@ public class MainController {
 					model.addAttribute("numberofguests", room.getGuests());
 					//return page
 					return "manage";
+				} else {
+					//unauthorized
+					model.addAttribute("errormsg", "User ID does not match for reservation: " + bookingId.get());
+					return "error";
 				}
 			}
 		}
