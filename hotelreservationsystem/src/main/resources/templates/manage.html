@@ -62,10 +62,7 @@
             <p class="control">
                 <a th:if="${resid != null}" class="button is-info is-medium" style = "float:left; margin:5px" href = "/updated.html" sec:authorize="hasAnyAuthority('USER','ADMIN')">Update Booking</a>
                 <a class="button is-info is-medium" style = "float:right; margin:5px" href="/">Go to Homepage</a>
-                <form>
-                <a th:if="${resid != null}" class="button is-info is-medium" style = "float:right; margin:5px" href = "/cancellation.html" sec:authorize="hasAuthority('ADMIN')">Cancel Booking</a>
-                <input name="resid" type="hidden" th:value="${resid}">
-                </form>
+                <a th:if="${resid != null}" class="button is-info is-medium" style = "float:right; margin:5px" th:href = "@{'/cancellation.html?resid=' + ${resid}}" sec:authorize="hasAuthority('ADMIN')">Cancel Booking</a>
             </p>
         </div>
     </div>
