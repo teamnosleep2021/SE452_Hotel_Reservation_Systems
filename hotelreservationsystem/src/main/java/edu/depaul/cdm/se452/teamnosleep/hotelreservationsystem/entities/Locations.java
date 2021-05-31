@@ -30,7 +30,7 @@ public class Locations {
     private String state;
 
     @Column(name = "POSTAL_CODE")
-    private int postal_code;
+    private String postal_code;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "locations")
     private Hotels hotels;

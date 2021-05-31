@@ -3,11 +3,17 @@ package edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.security;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.entities.Users;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.service.HotelService;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.service.LocationServiceImpl;
@@ -35,9 +41,17 @@ public class SecurityController {
 	}
 
 	@GetMapping("/")
-	public String index(Model model) {
-		model.addAttribute("listHotels", hotelService.getAllHotels());
+	public String index(Model model
+	,@RequestParam(name = "searchterm", required = false) Optional<String> searchTerm) {
+		//add locations list
 		model.addAttribute("listLocations", locationService.getAllLocations());
+		//if user enters search term, return custom hotel list
+		if (searchTerm.isPresent()){
+			model.addAttribute("listHotels", hotelService.getHotelsBySearchTerm(searchTerm.get()));
+		} else {
+			//else, return default hotel list
+			model.addAttribute("listHotels", hotelService.getAllHotels());
+		}
 		return "index";
 	}
 
