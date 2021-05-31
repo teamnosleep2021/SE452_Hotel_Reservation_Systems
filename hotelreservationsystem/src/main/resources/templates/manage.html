@@ -6,7 +6,7 @@
 <nav th:replace = "fragments :: navigation"></nav>
 <hr>
 
-<div class="box" style="padding-bottom:150px">
+<div class="box" style="margin-left: 10%; margin-right: 10%;">
     <div class="field is-vertical margin">
         <div class="field-body">
             <form action="/manage.html" method="get">
@@ -56,7 +56,12 @@
                 <p class="help is-danger"></p> 
             </div>
         </div>
-    </div>    
+    </div> 
+    <br>
+    <br>
+    <div>
+        <label sec:authorize="hasAuthority('USER')"><strong>Note:</strong> Please enter the booking id and click on search to make updates on your reservation. In order to cancel your reservation, please contact the admin.</label>
+    </div>     
     <hr>
     <div class="field-body">
         <div class="field">
@@ -70,3 +75,5 @@
         </div>
     </div>
 </div>
+</body>
+</html>
