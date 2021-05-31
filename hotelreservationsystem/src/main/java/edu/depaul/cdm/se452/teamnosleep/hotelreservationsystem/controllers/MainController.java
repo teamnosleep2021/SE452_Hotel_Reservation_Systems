@@ -237,21 +237,28 @@ public class MainController {
 	,@RequestParam(name = "roomid") Integer roomId
 	,@RequestParam(name = "startdt") @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate checkInDate
 	,@RequestParam(name = "enddt") @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate checkOutDate){
+	//check for overlapping dates/room
+	var o = reservationsRepository.findOverlappingRecord(checkInDate, checkOutDate, roomId);
+	
+	if (o.isEmpty()){
+		//get user details
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String userName = userDetails.getUsername();
 
-	//get user details
-	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-	String userName = userDetails.getUsername();
-
-	//save reservation
-	Reservations res = new Reservations();
-	res.setRoomId(roomId);
-	res.setStartDate(checkInDate);
-	res.setEndDate(checkOutDate);
-	int userId = usersRepository.getUserByUsername(userName).getId();
-	res.setUserId(userId);
-	reservationsRepository.save(res);
-	//add attributes
-	model.addAttribute("resid", res.getId());
-		return "payment";
+		//save reservation
+		Reservations res = new Reservations();
+		res.setRoomId(roomId);
+		res.setStartDate(checkInDate);
+		res.setEndDate(checkOutDate);
+		int userId = usersRepository.getUserByUsername(userName).getId();
+		res.setUserId(userId);
+		reservationsRepository.save(res);
+		//add attributes
+		model.addAttribute("resid", res.getId());
+			return "payment";
+		} else {
+			model.addAttribute("errormsg", "Reservation overlaps with another reservation during the specified date range");
+			return "error";
+		}
 	}
 }
