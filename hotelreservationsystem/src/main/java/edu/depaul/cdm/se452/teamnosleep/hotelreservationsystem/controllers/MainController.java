@@ -26,6 +26,7 @@ import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.Rese
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.RoomTypesRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.RoomsRepository;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.repositories.UsersRepository;
+import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.service.HotelDescriptionService;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.service.RatingService;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.service.RoomTypesService;
 import edu.depaul.cdm.se452.teamnosleep.hotelreservationsystem.service.RoomsService;
@@ -63,6 +64,9 @@ public class MainController {
 	@Autowired
 	private RatingService ratingService;
 
+	@Autowired
+	private HotelDescriptionService hotelDescriptionService;
+
 	private static final Logger log = LoggerFactory.getLogger(MainController.class);
 
 	@RequestMapping("/hotel-details.html")
@@ -72,6 +76,7 @@ public class MainController {
 		var hotel = hotelsRepository.findById(hotelId).get();
 		var loc = locationsRepository.findById(hotel.getLocationId()).get();
 		var hotelRating = ratingService.findRatingByIT(hotelId);
+		var hotelDesc = hotelDescriptionService.findDescriptionByIT(hotelId);
 
 		log.info("Hotel ID " +  hotelId + " has a rating of " + hotelRating);
 
@@ -80,6 +85,7 @@ public class MainController {
 		model.addAttribute("state", loc.getState());
 		model.addAttribute("zip", loc.getPostal_code());
 		model.addAttribute("rating", hotelRating);
+		model.addAttribute("description", hotelDesc);
 		model.addAttribute("listRooms", roomsService.getAllRooms(hotel.getId()));
 		model.addAttribute("listRoomTypes", roomTypesService.getAllRoomTypes());
 		return "hotel-details";

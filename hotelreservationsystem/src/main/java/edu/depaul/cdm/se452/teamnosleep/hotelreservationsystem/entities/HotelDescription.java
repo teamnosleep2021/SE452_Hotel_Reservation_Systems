@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Document(collection = "HotelRating")
-public class HotelRating {
+@Document(collection = "HotelDescription")
+public class HotelDescription {
     @Id
 	private int id;
 
-	private int hotelRatings;
+	private String hotelDescription;
 
 }
