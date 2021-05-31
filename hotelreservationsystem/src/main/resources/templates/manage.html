@@ -37,11 +37,12 @@
                     <p><b>Hotel Name:</b>    <span th:text="${hotelname}"></span></p>
                 </p>
             </div>
+            <form action="/updated.html" method="get">
             <div class="field">
                 <label for="start"><b>Check in:</b></label>
-                <input type="date" id="start" name="trip-start" th:value="${checkindate}">
+                <input type="date" id="start" name="checkindate" th:value="${checkindate}">
                 <label for="end"><b>Check out:</b></label>
-                <input type="date" id="end" name="trip-start" th:value="${checkoutdate}">
+                <input type="date" id="end" name="checkoutdate" th:value="${checkoutdate}">
             </div>
             <div class="field">
                 <p class="control">
@@ -60,7 +61,9 @@
     <div class="field-body">
         <div class="field">
             <p class="control">
-                <a th:if="${resid != null}" class="button is-info is-medium" style = "float:left; margin:5px" href = "/updated.html" sec:authorize="hasAnyAuthority('USER','ADMIN')">Update Booking</a>
+                <input type="hidden" id="residfield" name="resid" th:value="${resid}">
+                <input type="submit" th:if="${resid != null}" class="button is-info is-medium" style = "float:left; margin:5px" value="Update Booking" sec:authorize="hasAnyAuthority('USER','ADMIN')" />
+                </form>
                 <a class="button is-info is-medium" style = "float:right; margin:5px" href="/">Go to Homepage</a>
                 <a th:if="${resid != null}" class="button is-info is-medium" style = "float:right; margin:5px" th:href = "@{'/cancellation.html?resid=' + ${resid}}" sec:authorize="hasAuthority('ADMIN')">Cancel Booking</a>
             </p>
