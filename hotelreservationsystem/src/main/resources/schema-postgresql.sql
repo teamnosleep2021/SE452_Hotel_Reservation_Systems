@@ -49,7 +49,7 @@ create table LOCATIONS (
   ADDRESS_STR varchar(255),
   CITY varchar(255),
   STATE_CD varchar(25),
-  POSTAL_CODE int not null,
+  POSTAL_CODE varchar(10) not null,
   primary key (ID)
 );
 

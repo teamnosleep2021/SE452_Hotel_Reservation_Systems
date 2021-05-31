@@ -46,7 +46,7 @@ CREATE TABLE locations (
     address_str varchar(255), 
     city varchar(255), 
     state_cd varchar(25), 
-    POSTAL_CODE int not null
+    POSTAL_CODE varchar(10) not null
 );
 CREATE TABLE hotels (
     id INT AUTO_INCREMENT  PRIMARY KEY,
