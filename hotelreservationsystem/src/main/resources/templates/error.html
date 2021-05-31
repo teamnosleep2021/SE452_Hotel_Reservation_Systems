@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace = "fragments :: head">
+</head>
+<body>
+<nav th:replace = "fragments :: navigation"></nav>
+<hr>
+
+<div class="box" style="padding-bottom:150px">
+    <article class="message is-warning">
+        <div class="message-header">
+          <p>Error</p>
+        </div>
+        <div class="message-body">
+          <span th:text="${errormsg}"></span>
+        </div>
+      </article>  
+    <hr>
+    <div class="field-body">
+        <div class="field">
+            <p class="control">
+                <a class="button is-info is-medium" style = "float:right; margin:5px" href="/">Go to Homepage</a>
+            </p>
+        </div>
+    </div>
+</div>

@@ -9,70 +9,63 @@
 <div class="box" style="padding-bottom:150px">
     <div class="field is-vertical margin">
         <div class="field-body">
+            <form action="/manage.html" method="get">
+                <div class="field has-addons">
+                    <div class="control">
+                        <input class="input is-info is-medium" placeholder= "Enter Booking ID" type="text" name="bookingID" id="bookingID"/>
+                    </div>
+                    <div class="control">
+                        <input class="button is-info is-medium" type="submit" value="Search" sec:authorize="hasAnyAuthority('USER','ADMIN')"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <br><br>
+        <div class="field-body">
             <div class="field">
                 <p class="control">
-                    <input class="input is-info is-medium" placeholder= "Enter Booking ID" type="text" name="bookingID" id="bookingID"/>
+                    <p><b>Booking ID:</b>    <span th:text="${resid}"></span></p>
                 </p>
-                <p class="help is-danger"></p> 
-            </div>
-            <div class="field-body">
-                <div class="field">
-                    <p class="control">
-                        <a class="button is-info is-medium" style = "float:right; margin:5px" href = "/updated.html" sec:authorize="hasAnyAuthority('USER','ADMIN')">Update Booking</a>
-                        <a class="button is-info is-medium" style = "float:right; margin:5px" href = "/cancellation.html" sec:authorize="hasAuthority('ADMIN')">Cancel Booking</a>
-                    </p>
-                </div>
             </div>
         </div>
     </div>
+
     <div class="field is-vertical margin">
         <div class="field-body">
             <div class="field">
                 <p class="control">
-                    <p><b>Hotel Name:</b>    TRUMP INTERNATIONAL HOTEL</p>
+                    <p><b>Hotel Name:</b>    <span th:text="${hotelname}"></span></p>
+                </p>
+            </div>
+            <div class="field">
+                <label for="start"><b>Check in:</b></label>
+                <input type="date" id="start" name="trip-start" th:value="${checkindate}">
+                <label for="end"><b>Check out:</b></label>
+                <input type="date" id="end" name="trip-start" th:value="${checkoutdate}">
+            </div>
+            <div class="field">
+                <p class="control">
+                    <p><b>Room Type:</b>    <span th:text="${roomtype}"></span></p>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control">
+                    <p><b>Number of Guests:</b>    <span th:text="${numberofguests}"></p>
                 </p>
                 <p class="help is-danger"></p> 
             </div>
         </div>
     </div>    
-    <div class="field is-vertical margin">
-        <div class="field-body">
-            <div class="field">
-                <label for="start"><b>Check in:</b></label>
-                <input type="date" id="start" name="trip-start" value="2021-05-20" min="2021-05-15" max="2022-12-31">
-                <label for="end"><b>Check out:</b></label>
-                <input type="date" id="end" name="trip-start" value="2021-05-30" min="2021-05-15" max="2022-12-31">
-                <p class="help is-danger"></p> 
-            </div>
-        </div>
-    </div>  
-    <div class="field is-vertical margin">
-        <div class="field-body">
-            <div class="field">
-                <p class="control">
-                    <p><b>Room Type:</b>    Single Room</p>
-                </p>
-                <p class="help is-danger"></p> 
-            </div>
-        </div>
-    </div> 
-    <div class="field is-vertical margin">
-        <div class="field-body">
-            <div class="field">
-                <p class="control">
-                    <p><b>Number of Guests:</b>    2</p>
-                </p>
-                <p class="help is-danger"></p> 
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="field is-horizontal margin">
+    <hr>
     <div class="field-body">
         <div class="field">
             <p class="control">
-                <a class="button is-info is-medium" href="/">Go to Homepage</a>
+                <a th:if="${resid != null}" class="button is-info is-medium" style = "float:left; margin:5px" href = "/updated.html" sec:authorize="hasAnyAuthority('USER','ADMIN')">Update Booking</a>
+                <a class="button is-info is-medium" style = "float:right; margin:5px" href="/">Go to Homepage</a>
+                <form>
+                <a th:if="${resid != null}" class="button is-info is-medium" style = "float:right; margin:5px" href = "/cancellation.html" sec:authorize="hasAuthority('ADMIN')">Cancel Booking</a>
+                <input name="resid" type="hidden" th:value="${resid}">
+                </form>
             </p>
         </div>
     </div>
